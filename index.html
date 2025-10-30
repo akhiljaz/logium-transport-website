@@ -13,9 +13,8 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="logo.png" alt="Logium Transport Inc Logo" class="logo-image">
+                <img src="logo_logum.png" alt="Logium Transport Inc" class="logo-image">
                 <div class="logo-text">
-                    <h2>Logium Transport</h2>
                     <p class="nav-motto">We Think Logic'stically</p>
                 </div>
             </div>
@@ -24,6 +23,7 @@
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#fleet" class="nav-link">Fleet</a>
+                <a href="#quote" class="nav-link">Get Quote</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <div class="hamburger" id="hamburger">
@@ -41,7 +41,7 @@
                 <h1 class="hero-title">Intelligent Transportation Solutions</h1>
                 <p class="hero-subtitle">Fast, reliable, and intelligent transportation solutions that empower businesses and drive growth across industries. We Think Logic'stically.</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary">Get Quote</button>
+                    <button class="btn btn-primary" onclick="document.getElementById('quote').scrollIntoView({behavior: 'smooth'})">Get Quote</button>
                     <button class="btn btn-secondary">Our Services</button>
                 </div>
             </div>
@@ -135,6 +135,12 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>About Logium Transport Inc</h2>
+                    
+                    <div class="about-company">
+                        <h3>About Company</h3>
+                        <p>Logium Transport Inc. is a North America–based logistics company redefining freight movement with smart, reliable, and data-driven transportation solutions.</p>
+                    </div>
+                    
                     <p class="about-lead">Founded in 2024 by logistics veterans, truck drivers, and tech innovators, Logium Transport was born from a vision to transform freight transportation into a seamless, intelligent experience.</p>
                     <p>In the heart of North America's booming logistics sector, we bridge the gap between traditional trucking and the demands of a fast-paced, interconnected world. From our inception, we've embraced cutting-edge technologies: smart route optimization, real-time freight tracking, predictive maintenance, and eco-conscious fleet management.</p>
                     
@@ -229,6 +235,182 @@
         </div>
     </section>
 
+    <!-- Get a Quote Section -->
+    <section id="quote" class="quote-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get a Free Quote</h2>
+                <p>Request a customized quote for your transportation needs. Our team will respond within 24 hours.</p>
+            </div>
+            <div class="quote-content">
+                <div class="quote-info">
+                    <div class="quote-benefits">
+                        <h3>Why Choose Logium Transport?</h3>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Competitive Pricing</h4>
+                                <p>Get the best rates for your transportation needs</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>24/7 Real-Time Tracking</h4>
+                                <p>Monitor your shipment every step of the way</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Fast Response Time</h4>
+                                <p>Quote delivered within 24 hours</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Smart Route Optimization</h4>
+                                <p>Efficient delivery with logic'stical planning</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Experienced Team</h4>
+                                <p>Professional drivers and logistics experts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quote-contact-box">
+                        <h4>Need Immediate Assistance?</h4>
+                        <p>Call us directly for urgent shipping needs</p>
+                        <a href="tel:+12894893817" class="phone-link">
+                            <i class="fas fa-phone"></i> +1 (289) 489-3817
+                        </a>
+                        <p class="hours">Mon - Sat: 09 AM - 06 PM</p>
+                    </div>
+                </div>
+                <form class="quote-form" id="quoteForm">
+                    <h3>Request Your Quote</h3>
+                    
+                    <div class="form-section">
+                        <h4><i class="fas fa-user"></i> Contact Information</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quote-name">Full Name *</label>
+                                <input type="text" id="quote-name" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quote-company">Company Name</label>
+                                <input type="text" id="quote-company" name="company" placeholder="Your Company">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quote-email">Email Address *</label>
+                                <input type="email" id="quote-email" name="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quote-phone">Phone Number *</label>
+                                <input type="tel" id="quote-phone" name="phone" placeholder="+1 (555) 123-4567" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4><i class="fas fa-box"></i> Shipment Details</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quote-service">Service Type *</label>
+                                <select id="quote-service" name="service" required>
+                                    <option value="">Select a service</option>
+                                    <option value="ltl">LTL (Less Than Truckload)</option>
+                                    <option value="ftl">FTL (Full Truckload)</option>
+                                    <option value="dry-van">Dry Van</option>
+                                    <option value="reefer">Reefer (Temperature Controlled)</option>
+                                    <option value="cross-border">Cross Border</option>
+                                    <option value="regional">Regional Transportation</option>
+                                    <option value="cross-dock">Cross Docking</option>
+                                    <option value="warehousing">Warehousing</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quote-freight-type">Freight Type *</label>
+                                <select id="quote-freight-type" name="freight-type" required>
+                                    <option value="">Select freight type</option>
+                                    <option value="palletized">Palletized</option>
+                                    <option value="loose">Loose/Non-Palletized</option>
+                                    <option value="hazmat">Hazmat</option>
+                                    <option value="oversized">Oversized</option>
+                                    <option value="perishable">Perishable</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quote-weight">Estimated Weight (lbs) *</label>
+                                <input type="number" id="quote-weight" name="weight" placeholder="e.g., 5000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quote-dimensions">Dimensions (L x W x H)</label>
+                                <input type="text" id="quote-dimensions" name="dimensions" placeholder="e.g., 48x40x60 inches">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4><i class="fas fa-map-marker-alt"></i> Pickup & Delivery</h4>
+                        <div class="form-group">
+                            <label for="quote-pickup">Pickup Location *</label>
+                            <input type="text" id="quote-pickup" name="pickup" placeholder="City, State/Province" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quote-delivery">Delivery Location *</label>
+                            <input type="text" id="quote-delivery" name="delivery" placeholder="City, State/Province" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quote-pickup-date">Preferred Pickup Date *</label>
+                                <input type="date" id="quote-pickup-date" name="pickup-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quote-delivery-date">Desired Delivery Date</label>
+                                <input type="date" id="quote-delivery-date" name="delivery-date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4><i class="fas fa-info-circle"></i> Additional Information</h4>
+                        <div class="form-group">
+                            <label for="quote-special">Special Requirements or Notes</label>
+                            <textarea id="quote-special" name="special" rows="4" placeholder="Any special handling, delivery instructions, or additional details..."></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="insurance" id="quote-insurance">
+                                <span>I'm interested in additional insurance coverage</span>
+                            </label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="recurring" id="quote-recurring">
+                                <span>This is a recurring shipment</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <i class="fas fa-paper-plane"></i> Request Quote
+                    </button>
+                    <p class="form-note">* Required fields. We respect your privacy and will never share your information.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -242,14 +424,14 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Address</h4>
-                            <p>123 Transport Avenue<br>Logistics City, LC 12345</p>
+                            <p>7499 Auburn Rd<br>Milton ON L9T 7V9</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Phone</h4>
-                            <p>+1 (555) 123-4567</p>
+                            <p>+1 (289) 489-3817</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -263,7 +445,7 @@
                         <i class="fas fa-clock"></i>
                         <div>
                             <h4>Business Hours</h4>
-                            <p>Monday - Friday: 6:00 AM - 8:00 PM<br>Saturday - Sunday: 8:00 AM - 6:00 PM</p>
+                            <p>Mon - Sat : 09 am - 06 pm</p>
                         </div>
                     </div>
                 </div>
@@ -343,6 +525,7 @@
         </div>
     </footer>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

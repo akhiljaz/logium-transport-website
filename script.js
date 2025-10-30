@@ -2,6 +2,10 @@
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 
+// Initialize EmailJS with your Public Key
+// Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+emailjs.init('YOUR_PUBLIC_KEY'); // Get this from EmailJS dashboard
+
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
@@ -82,6 +86,105 @@ if (contactForm) {
         // Reset form
         this.reset();
     });
+}
+
+// Quote Form Handling
+const quoteForm = document.getElementById('quoteForm');
+if (quoteForm) {
+    quoteForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validateForm(this)) {
+            showNotification('Please fill in all required fields correctly.', 'error');
+            return;
+        }
+        
+        // Get form data
+        const formData = new FormData(this);
+        const quoteData = {};
+        formData.forEach((value, key) => {
+            quoteData[key] = value;
+        });
+        
+        // Show loading state
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        // Send email using EmailJS
+        // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            to_email: 'akhiljaz@gmail.com',
+            from_name: quoteData.name,
+            from_email: quoteData.email,
+            company: quoteData.company || 'N/A',
+            phone: quoteData.phone,
+            service_type: quoteData.service,
+            freight_type: quoteData['freight-type'],
+            weight: quoteData.weight,
+            dimensions: quoteData.dimensions || 'N/A',
+            pickup_location: quoteData.pickup,
+            delivery_location: quoteData.delivery,
+            pickup_date: quoteData['pickup-date'],
+            delivery_date: quoteData['delivery-date'] || 'Flexible',
+            special_requirements: quoteData.special || 'None',
+            insurance: quoteData.insurance ? 'Yes' : 'No',
+            recurring: quoteData.recurring ? 'Yes' : 'No',
+            subject: 'New Quote Request - Logium Transport Inc'
+        })
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            submitBtn.innerHTML = originalHTML;
+            submitBtn.disabled = false;
+            showNotification('Quote request sent successfully! We\'ll email you within 24 hours with a customized quote.', 'success');
+            quoteForm.reset();
+        }, function(error) {
+            console.error('FAILED...', error);
+            submitBtn.innerHTML = originalHTML;
+            submitBtn.disabled = false;
+            showNotification('Failed to send quote request. Please try again or call us directly.', 'error');
+        });
+    });
+    
+    // Real-time validation for quote form
+    const quoteInputs = quoteForm.querySelectorAll('input, select, textarea');
+    quoteInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.hasAttribute('required')) {
+                const value = this.value.trim();
+                if (!value) {
+                    this.style.borderColor = '#ef4444';
+                } else if (this.type === 'email' && !isValidEmail(value)) {
+                    this.style.borderColor = '#ef4444';
+                } else {
+                    this.style.borderColor = '#10b981';
+                }
+            }
+        });
+        
+        input.addEventListener('focus', function() {
+            this.style.borderColor = '#2563eb';
+        });
+    });
+
+    // Set minimum date for pickup date to today
+    const pickupDateInput = document.getElementById('quote-pickup-date');
+    if (pickupDateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        pickupDateInput.setAttribute('min', today);
+    }
+
+    // Set minimum delivery date based on pickup date
+    const deliveryDateInput = document.getElementById('quote-delivery-date');
+    if (pickupDateInput && deliveryDateInput) {
+        pickupDateInput.addEventListener('change', function() {
+            deliveryDateInput.setAttribute('min', this.value);
+            if (deliveryDateInput.value && deliveryDateInput.value < this.value) {
+                deliveryDateInput.value = '';
+            }
+        });
+    }
 }
 
 // Notification system
@@ -199,10 +302,14 @@ const statsObserver = new IntersectionObserver((entries) => {
             const counter = entry.target.querySelector('h3');
             const text = counter.textContent;
             const number = parseInt(text.replace(/\D/g, ''));
-            const suffix = text.replace(/\d/g, '');
             
-            counter.dataset.suffix = suffix;
-            animateCounter(counter, number);
+            // Only animate if there's a valid number
+            if (!isNaN(number) && number > 0) {
+                const suffix = text.replace(/\d/g, '');
+                counter.dataset.suffix = suffix;
+                animateCounter(counter, number);
+            }
+            
             entry.target.classList.add('animated');
         }
     });
