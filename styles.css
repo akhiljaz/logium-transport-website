@@ -900,7 +900,7 @@ section {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background: white;
+        background: #000000;
         width: 100%;
         text-align: center;
         transition: var(--transition);
@@ -910,6 +910,14 @@ section {
 
     .nav-menu.active {
         left: 0;
+    }
+
+    .nav-link {
+        color: #ffffff;
+    }
+
+    .nav-link:hover {
+        color: #ff6600;
     }
 
     .hero-content {
