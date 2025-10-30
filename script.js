@@ -23,10 +23,10 @@ document.querySelectorAll('.nav-link').forEach(link => {
 window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+        navbar.style.background = '#000000';
+        navbar.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.background = '#000000';
         navbar.style.boxShadow = 'none';
     }
 });
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (getQuoteBtn) {
         getQuoteBtn.addEventListener('click', () => {
-            document.getElementById('contact').scrollIntoView({
+            document.getElementById('quote').scrollIntoView({
                 behavior: 'smooth'
             });
         });
